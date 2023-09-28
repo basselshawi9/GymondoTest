@@ -17,6 +17,30 @@ final class StarterTests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+    
+    func testGetExercisesViewModel() throws {
+        
+        if let viewModel : ExerciseViewModel = ServiceLocator.shared.getService() {
+            viewModel.exercisesState.sink { state in
+                if let successState = state as? GetExerciseSuccessState {
+                    if let _ = successState.model.results {
+                        XCTAssertTrue(true)
+                    }
+                    else {
+                        XCTAssertTrue(false,"Data is null")
+                    }
+                }
+                else if let errorState = state as? GetExerciseFailureState {
+                    XCTAssertTrue(false,"\(errorState.error.localizedDescription)")
+                }
+            }
+            .store(in: &viewModel.cancelables)
+            viewModel.addEvent(event: GetExercisesEvent())
+        }
+        else {
+            XCTAssertTrue(false,"Dependency Injector failed to locate ViewModel")
+        }
+    }
 
     func testExample() throws {
         // This is an example of a functional test case.

@@ -14,12 +14,8 @@ class ServiceLocator {
     
     private init(){
         
-        addService(service: HomeRemoteDataSource())
-        let homeDataSrouce : HomeRemoteDataSource? = getService()
-        if let _homeDataSrouce = homeDataSrouce {
-            addService(service: HomeRespository(_datasrouce: _homeDataSrouce))
-        }
-        addService(service: HomeViewModel())
+        addService(service: ExerciseRemoteDataSrouce())
+        addService(service: ExerciseViewModel())
         
         // Notifiers
         addService(service: RestartAppNotifier())

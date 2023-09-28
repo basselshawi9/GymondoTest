@@ -12,12 +12,8 @@ import SwiftUI
 import AVFoundation
 
 
-let APIKEY = "A+dat4F)mwFaUU,38]Z5BvAySR(y/xJ#@m9Wt5_wUZRrmB*T>jD82{CppaYh!+MG"
-
-
 func NO_AUTHORIZATION_HEADER() -> HTTPHeaders{
-    return ["APIKEY": APIKEY,
-            "Content-Type": "application/json; charset=utf-8"]
+    return ["Content-Type": "application/json; charset=utf-8"]
 }
 
 func AUTHORIZATION_HEADER() -> HTTPHeaders{
