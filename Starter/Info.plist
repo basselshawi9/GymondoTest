@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>https://media.havebreak.com.s3.eu-west-2.amazonaws.com</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Glory-VariableFont_wght.ttf</string>
+		<string>Glory-Italic-VariableFont_wght.ttf</string>
+		<string>Glory-ThinItalic.ttf</string>
+		<string>Glory-Thin.ttf</string>
+		<string>Glory-SemiBoldItalic.ttf</string>
+		<string>Glory-SemiBold.ttf</string>
+		<string>Glory-Regular.ttf</string>
+		<string>Glory-MediumItalic.ttf</string>
+		<string>Glory-Medium.ttf</string>
+		<string>Glory-LightItalic.ttf</string>
+		<string>Glory-Light.ttf</string>
+		<string>Glory-Italic.ttf</string>
+		<string>Glory-ExtraLightItalic.ttf</string>
+		<string>Glory-ExtraLight.ttf</string>
+		<string>Glory-ExtraBoldItalic.ttf</string>
+		<string>Glory-ExtraBold.ttf</string>
+		<string>Glory-BoldItalic.ttf</string>
+		<string>Glory-Bold.ttf</string>
+	</array>
+</dict>
+</plist>
