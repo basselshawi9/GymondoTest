@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct StarterApp: App {
+    
     var body: some Scene {
-        WindowGroup {
-            ContentView()
+        
+        let dependencyInjector = ServiceLocator.shared
+        dependencyInjector.addService(service: ScreenUtil(width: 428, height: 926))
+        
+        return WindowGroup {
+            HomeScreen()
         }
     }
 }
