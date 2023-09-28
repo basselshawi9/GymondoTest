@@ -7,13 +7,7 @@
 
 import Foundation
 
-struct ExerciseImagesModel : BaseModel{
-    var count: Int?
-    var next, previous: String?
-    var results: [ExerciseImageModel]?
-}
-
-struct ExerciseImageModel : BaseModel{
+struct ExerciseImageModel : BaseModel,Identifiable{
     var id: Int?
     var uuid: String?
     var exerciseBase: Int?

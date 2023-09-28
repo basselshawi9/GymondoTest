@@ -12,30 +12,29 @@ class ExerciseViewModel : BaseViewModel {
     
     var exercisesState = CurrentValueSubject<any BaseState,Never>(InitialExerciseState())
     
-    var exerciseImagesState = CurrentValueSubject<any BaseState,Never>(InitialExerciseState())
-    
+    var exerciseByIdState = CurrentValueSubject<any BaseState,Never>(InitialExerciseState())
+        
     var cancelables : Set<AnyCancellable> = []
     
     func addEvent<ExerciseEvent>(event: ExerciseEvent) {
         if let getExercisesEvent = event as? GetExercisesEvent {
             mapGetExercisesEvent(event: getExercisesEvent)
         }
-        else if let getExerciseImagesEvent = event as? GetExerciseImagesEvent {
-            mapGetExerciseImagesEvent(event: getExerciseImagesEvent)
+        else if let getExerciseByIdEvent = event as? GetExerciseByIdEvent {
+            mapGetExerciseByIdEvent(event: getExerciseByIdEvent)
         }
-        
     }
     
     private func mapGetExercisesEvent(event:GetExercisesEvent) {
-        exercisesState.send(GetExerciseWaitingState())
+        exercisesState.send(ExerciseWaitingState())
         
-        if let remoteDataSource : ExerciseRemoteDataSrouce = ServiceLocator.shared.getService() {
+        if let remoteDataSource : ExerciseRemoteDataSrouce = DependencyInjector.shared.getService() {
             
             let repository = ExerciseRespository(datasrouce: remoteDataSource)
             repository.getExercises().receive(on: DispatchQueue.main).sink { completion in
                 switch completion {
                 case .failure(let err):
-                    self.exercisesState.send(GetExerciseFailureState(error: err) {
+                    self.exercisesState.send(ExerciseFailureState(error: err) {
                         
                     })
                     break
@@ -50,16 +49,16 @@ class ExerciseViewModel : BaseViewModel {
         }
     }
     
-    private func mapGetExerciseImagesEvent(event:GetExerciseImagesEvent) {
-        exerciseImagesState.send(GetExerciseImagesWaitingState())
+    private func mapGetExerciseByIdEvent(event:GetExerciseByIdEvent) {
+        exerciseByIdState.send(ExerciseWaitingState())
         
-        if let remoteDataSource : ExerciseRemoteDataSrouce = ServiceLocator.shared.getService() {
+        if let remoteDataSource : ExerciseRemoteDataSrouce = DependencyInjector.shared.getService() {
             
             let repository = ExerciseRespository(datasrouce: remoteDataSource)
-            repository.getExerciseImages(param: event.param).receive(on: DispatchQueue.main).sink { completion in
+            repository.getExerciseById(param: event.param).receive(on: DispatchQueue.main).sink { completion in
                 switch completion {
                 case .failure(let err):
-                    self.exerciseImagesState.send(GetExerciseImagesFailureState(error: err) {
+                    self.exerciseByIdState.send(ExerciseFailureState(error: err) {
                         
                     })
                     break
@@ -68,7 +67,8 @@ class ExerciseViewModel : BaseViewModel {
                 }
                 
             } receiveValue: { model in
-                self.exerciseImagesState.send(GetExerciseImagesSuccessState(model: model))
+                
+                self.exerciseByIdState.send(GetExerciseByIdSuccessState(model: model))
                 
             }.store(in: &cancelables)
         }

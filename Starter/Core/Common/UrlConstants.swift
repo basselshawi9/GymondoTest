@@ -13,5 +13,5 @@ let baseAppApiUrl = "\(baseUrl)api/v2/"
 let getCountriesApis = "https://countriesnow.space/api/v0.1/countries/flag/images"
 let getCitiesApis = "https://countriesnow.space/api/v0.1/countries/cities"
 
-let getExercisesUrl = "\(baseAppApiUrl)exercise/"
+let getExercisesUrl = "\(baseAppApiUrl)exerciseinfo/"
 let getExerciseImagesUrl = "\(baseAppApiUrl)exerciseimage/"

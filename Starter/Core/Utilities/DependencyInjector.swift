@@ -1,5 +1,5 @@
 //
-//  ServiceLocator.swift
+//  DependencyInjector.swift
 //  Bloc
 //
 //  Created by iMac on 10/22/22.
@@ -8,9 +8,9 @@
 import Foundation
 
 
-class ServiceLocator {
+class DependencyInjector {
     
-    static private let _shared = ServiceLocator()
+    static private let _shared = DependencyInjector()
     
     private init(){
         
@@ -23,7 +23,7 @@ class ServiceLocator {
     }
     
 
-    static var shared:ServiceLocator {
+    static var shared:DependencyInjector {
         get {
             return _shared
         }

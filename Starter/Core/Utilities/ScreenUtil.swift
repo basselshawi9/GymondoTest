@@ -29,7 +29,7 @@ func ~ (lhs: Double, rhs: String) -> Double {
     var desginWidth = 428.0
     var desginHeight = 926.0
     
-    if let screenUtil : ScreenUtil =  ServiceLocator.shared.getService() {
+    if let screenUtil : ScreenUtil =  DependencyInjector.shared.getService() {
         
         desginWidth = screenUtil.width
         desginHeight = screenUtil.height

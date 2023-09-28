@@ -20,18 +20,16 @@ class InitialExerciseState:ExerciseState{
     }
 }
 
-
-//MARK: - Get Exercises States (waiting, Success, and Error)
-class GetExerciseWaitingState:ExerciseState {
+class ExerciseWaitingState:ExerciseState {
     
-    static func == (lhs: GetExerciseWaitingState, rhs: GetExerciseWaitingState) -> Bool {
+    static func == (lhs: ExerciseWaitingState, rhs: ExerciseWaitingState) -> Bool {
         return true
     }
 }
 
-class GetExerciseFailureState:ExerciseState {
+class ExerciseFailureState:ExerciseState {
     
-    static func == (lhs: GetExerciseFailureState, rhs: GetExerciseFailureState) -> Bool {
+    static func == (lhs: ExerciseFailureState, rhs: ExerciseFailureState) -> Bool {
         return lhs.error.localizedDescription == rhs.error.localizedDescription
     }
     
@@ -43,6 +41,8 @@ class GetExerciseFailureState:ExerciseState {
         self.blocCallBack = callBlack
     }
 }
+
+//MARK: - Get Exercises Success State
 
 class GetExerciseSuccessState:ExerciseState {
     static func == (lhs: GetExerciseSuccessState, rhs: GetExerciseSuccessState) -> Bool {
@@ -56,37 +56,16 @@ class GetExerciseSuccessState:ExerciseState {
     }
 }
 
-//MARK: - Get Exercise Images States (waiting, Success, and Error)
-class GetExerciseImagesWaitingState:ExerciseState {
-    
-    static func == (lhs: GetExerciseImagesWaitingState, rhs: GetExerciseImagesWaitingState) -> Bool {
-        return true
-    }
-}
+//MARK: - Get Exercise By Id Success State
 
-class GetExerciseImagesFailureState:ExerciseState {
-    
-    static func == (lhs: GetExerciseImagesFailureState, rhs: GetExerciseImagesFailureState) -> Bool {
-        return lhs.error.localizedDescription == rhs.error.localizedDescription
-    }
-    
-    let error:Error
-    let blocCallBack:()->()
-    
-    init (error:Error,callBlack:@escaping ()->()) {
-        self.error = error
-        self.blocCallBack = callBlack
-    }
-}
-
-class GetExerciseImagesSuccessState:ExerciseState {
-    static func == (lhs: GetExerciseImagesSuccessState, rhs: GetExerciseImagesSuccessState) -> Bool {
+class GetExerciseByIdSuccessState:ExerciseState {
+    static func == (lhs: GetExerciseByIdSuccessState, rhs: GetExerciseByIdSuccessState) -> Bool {
         return lhs.model == rhs.model
     }
     
-    let model:ExerciseImagesModel
+    let model:ExerciseModel
     
-    init(model:ExerciseImagesModel) {
+    init(model:ExerciseModel) {
         self.model = model
     }
 }

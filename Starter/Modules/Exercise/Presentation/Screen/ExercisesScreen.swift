@@ -10,8 +10,8 @@ import SwiftUI
 
 struct ExercisesScreen : View {
     
-    var viewModel : ExerciseViewModel {
-        if let _viewModel : ExerciseViewModel = ServiceLocator.shared.getService() {
+    private var viewModel : ExerciseViewModel {
+        if let _viewModel : ExerciseViewModel = DependencyInjector.shared.getService() {
             return _viewModel
         }
         else {
@@ -19,26 +19,33 @@ struct ExercisesScreen : View {
         }
     }
     
-    @StateObject var exercisesState = ViewModelState()
+    @StateObject private var exercisesState = ViewModelState()
+    @State private var showExerciseDetailScreen = false
+    @State private var selectedExercise : ExerciseModel?
     
     var body: some View {
-        NavigationView {
-            
+        
+        ZStack {
+            NavigationLink("", isActive:$showExerciseDetailScreen) {
+                if let _selectedExercise = selectedExercise {
+                    ExerciseDetailScreen(model: _selectedExercise, visitedExercies: [_selectedExercise.id ?? 0], showExerciseDetailScreen: $showExerciseDetailScreen)
+                }
+            }
             Group {
                 if let exerciseSuccessState = exercisesState.state as? GetExerciseSuccessState {
                     buildContent(model: exerciseSuccessState.model)
                 }
-                else if let _ = exercisesState.state as? GetExerciseWaitingState {
+                else if let _ = exercisesState.state as? ExerciseWaitingState {
                     LoadingView(size: CGSize(width: 40, height: 40))
                 }
-                else if let _ = exercisesState.state as? GetExerciseFailureState {
+                else if let _ = exercisesState.state as? ExerciseFailureState {
                     CustomErrorView(text: "Error Getting Exercises") {
                         viewModel.addEvent(event: GetExercisesEvent())
                     }
                 }
             }
-            .navigationTitle("Exercises")
         }
+        .navigationTitle("Exercises")
         .onViewDidLoad{
             
             viewModel.addEvent(event: GetExercisesEvent())
@@ -52,7 +59,10 @@ struct ExercisesScreen : View {
             LazyVStack {
                 if let exercises = model.results {
                     ForEach(exercises) { item in
-                        ExerciseListItemView(model: item)
+                        ExerciseListItemView(model: item) {
+                            selectedExercise = item
+                            showExerciseDetailScreen = true
+                        }
                     }
                 }
             }

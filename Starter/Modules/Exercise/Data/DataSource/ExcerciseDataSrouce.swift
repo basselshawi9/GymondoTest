@@ -11,6 +11,6 @@ import Combine
 protocol ExerciseDataSrouce  {
     
     func getExercises()->Future<ExercisesModel,Error>
-    func getExerciseImages(param:GetExerciseImagesParam)->Future<ExerciseImagesModel,Error>
+    func getExerciseById(param:GetExerciseByIdParam)->Future<ExerciseModel,Error>
     
 }

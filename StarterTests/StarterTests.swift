@@ -18,13 +18,18 @@ final class StarterTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func testGetExercisesViewModel() throws {
+    func testGetExercises() throws {
         
-        if let viewModel : ExerciseViewModel = ServiceLocator.shared.getService() {
+        if let viewModel : ExerciseViewModel = DependencyInjector.shared.getService() {
             viewModel.exercisesState.sink { state in
                 if let successState = state as? GetExerciseSuccessState {
-                    if let _ = successState.model.results {
-                        XCTAssertTrue(true)
+                    if let results = successState.model.results {
+                        //check if results count is 20 as per default
+                        XCTAssertEqual(results.count, 20)
+                        //check if prev data is null since this is the first page
+                        XCTAssertNil(successState.model.previous)
+                        //check if next data doesn't equal to null
+                        XCTAssertNotNil(successState.model.next)
                     }
                     else {
                         XCTAssertTrue(false,"Data is null")

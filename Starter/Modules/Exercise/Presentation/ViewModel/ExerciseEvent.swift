@@ -19,15 +19,15 @@ class GetExercisesEvent:ExerciseEvent {
     
 }
 
-class GetExerciseImagesEvent:ExerciseEvent {
+class GetExerciseByIdEvent:ExerciseEvent {
     
-    static func == (lhs: GetExerciseImagesEvent, rhs: GetExerciseImagesEvent) -> Bool {
+    static func == (lhs: GetExerciseByIdEvent, rhs: GetExerciseByIdEvent) -> Bool {
         return lhs.param == rhs.param
     }
     
-    let param:GetExerciseImagesParam
+    let param:GetExerciseByIdParam
     
-    init(param: GetExerciseImagesParam) {
+    init(param: GetExerciseByIdParam) {
         self.param = param
     }
 }

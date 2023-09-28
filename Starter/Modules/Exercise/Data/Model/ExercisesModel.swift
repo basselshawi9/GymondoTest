@@ -20,25 +20,20 @@ struct ExerciseModel : BaseModel,Identifiable {
     var exerciseBase: Int?
     var description: String?
     var created: String?
-    var category: Int?
-    var muscles, musclesSecondary, equipment: [Int]?
-    var language, license: Int?
     var licenseAuthor: String?
     var variations: [Int]?
     var authorHistory: [String]?
+    var images : [ExerciseImageModel]?
     
     enum CodingKeys: String, CodingKey {
         case id
         case uuid, name
-        case exerciseBase = "exercise_base"
+        case exerciseBase = "exercise_base_id"
         case description
         case created
-        case category
-        case muscles, equipment
-        case musclesSecondary = "muscles_secondary"
-        case language, license
         case licenseAuthor = "license_author"
         case variations
         case authorHistory = "author_history"
+        case images
     }
 }

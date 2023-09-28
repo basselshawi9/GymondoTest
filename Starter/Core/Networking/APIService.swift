@@ -31,7 +31,7 @@ class APIService : NSObject,URLSessionDelegate{
                 case .failure(let Lerror):
                     
                     if let errorCode = Lerror.asAFError?.responseCode,errorCode == 403 {
-                        if let restartNotifier : RestartAppNotifier = ServiceLocator.shared.getService() {
+                        if let restartNotifier : RestartAppNotifier = DependencyInjector.shared.getService() {
                             restartNotifier.restartPublisher.send(true)
                         }
                     }

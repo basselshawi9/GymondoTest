@@ -20,7 +20,8 @@ class ExerciseRespository {
         datasrouce.getExercises()
     }
     
-    func getExerciseImages(param:GetExerciseImagesParam) -> Future<ExerciseImagesModel, Error> {
-        datasrouce.getExerciseImages(param: param)
+    func getExerciseById(param:GetExerciseByIdParam) -> Future<ExerciseModel, Error> {
+        datasrouce.getExerciseById(param: param)
     }
+    
 }
