@@ -44,11 +44,8 @@ class ExerciseViewModel : BaseViewModel {
                 
             } receiveValue: { model in
                 self.exercisesState.send(GetExerciseSuccessState(model: model))
-                
-                if _exerciseDataSource is ExerciseRemoteDataSrouce {
-                    if let local : ExerciseLocalDataSrouce = DependencyInjector.shared.getService(), let exercies = model.results {
-                        let _ = local.save(exercies: exercies)
-                    }
+                if let exercies = model.results {
+                    let _ = repository.cacheExercies(exercies: exercies)
                 }
                 
             }.store(in: &cancelables)
@@ -75,11 +72,7 @@ class ExerciseViewModel : BaseViewModel {
             } receiveValue: { model in
                 
                 self.exerciseByIdState.send(GetExerciseByIdSuccessState(model: model))
-                if _exerciseDataSource is ExerciseRemoteDataSrouce {
-                    if let local : ExerciseLocalDataSrouce = DependencyInjector.shared.getService() {
-                        let _ = local.save(exercies: [model])
-                    }
-                }
+                let _ = repository.cacheExercies(exercies: [model])
                 
             }.store(in: &cancelables)
         }

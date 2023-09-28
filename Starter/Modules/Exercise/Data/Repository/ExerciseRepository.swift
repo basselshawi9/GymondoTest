@@ -23,5 +23,24 @@ class ExerciseRespository {
     func getExerciseById(param:GetExerciseByIdParam) -> Future<ExerciseModel, Error> {
         datasrouce.getExerciseById(param: param)
     }
-    
+    func cacheExercies(exercies:[ExerciseModel]) -> Future<Bool, Error> {
+        if datasrouce is ExerciseRemoteDataSrouce {
+            
+            if let local : ExerciseLocalDataSrouce = DependencyInjector.shared.getService(){
+                return local.save(exercies: exercies)
+            }
+            else {
+                return Future<Bool, Error> { promise in
+                    promise(.failure(CustomError(errorDescription: "Couldn't locate local datasrouce")))
+                    
+                }
+            }
+        }
+        else {
+            return Future<Bool, Error> { promise in
+                promise(.failure(CustomError(errorDescription: "Error, can't cache local datasrouce")))
+                
+            }
+        }
+    }
 }

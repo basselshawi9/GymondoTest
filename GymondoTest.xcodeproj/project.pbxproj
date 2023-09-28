@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8822ED8A2AC5CBA100A92925 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8822ED892AC5CBA100A92925 /* SDWebImageSwiftUI */; };
+		8822ED8C2AC5D39300A92925 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8822ED8B2AC5D39300A92925 /* README.md */; };
 		88703F9E2AC340CA00271658 /* ExcerciseDataSrouce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88703F9D2AC340CA00271658 /* ExcerciseDataSrouce.swift */; };
 		88703FA02AC3413600271658 /* ExercisesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88703F9F2AC3413600271658 /* ExercisesModel.swift */; };
 		88703FA22AC341A300271658 /* ExerciseRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88703FA12AC341A300271658 /* ExerciseRemoteDataSource.swift */; };
@@ -92,6 +94,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8822ED8B2AC5D39300A92925 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		88703F9D2AC340CA00271658 /* ExcerciseDataSrouce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcerciseDataSrouce.swift; sourceTree = "<group>"; };
 		88703F9F2AC3413600271658 /* ExercisesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesModel.swift; sourceTree = "<group>"; };
 		88703FA12AC341A300271658 /* ExerciseRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRemoteDataSource.swift; sourceTree = "<group>"; };
@@ -175,6 +178,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8822ED8A2AC5CBA100A92925 /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,6 +192,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8822ED882AC5CBA100A92925 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		88703F992AC33CB300271658 /* Exercise */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,6 +300,7 @@
 				88E978D52ABDD10B00547761 /* StarterTests */,
 				88E978DF2ABDD10B00547761 /* StarterUITests */,
 				88E978C32ABDD10800547761 /* Products */,
+				8822ED882AC5CBA100A92925 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -312,6 +324,7 @@
 				88E978F32ABDD2F900547761 /* Core */,
 				88E978C92ABDD10B00547761 /* Assets.xcassets */,
 				88E978CB2ABDD10B00547761 /* Preview Content */,
+				8822ED8B2AC5D39300A92925 /* README.md */,
 			);
 			path = Starter;
 			sourceTree = "<group>";
@@ -531,6 +544,9 @@
 				88E978D42ABDD10B00547761 /* PBXTargetDependency */,
 			);
 			name = StarterTests;
+			packageProductDependencies = (
+				8822ED892AC5CBA100A92925 /* SDWebImageSwiftUI */,
+			);
 			productName = StarterTests;
 			productReference = 88E978D22ABDD10B00547761 /* StarterTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -610,6 +626,7 @@
 				88E97C3E2ABDDC4100547761 /* Glory-SemiBold.ttf in Resources */,
 				88E97C432ABDDC4100547761 /* Glory-Italic-VariableFont_wght.ttf in Resources */,
 				88E97C462ABDDC4100547761 /* Glory-ExtraLight.ttf in Resources */,
+				8822ED8C2AC5D39300A92925 /* README.md in Resources */,
 				88E97C3D2ABDDC4100547761 /* Glory-VariableFont_wght.ttf in Resources */,
 				88E97C4C2ABDDC4100547761 /* Glory-ExtraBold.ttf in Resources */,
 				88E97C422ABDDC4100547761 /* Glory-LightItalic.ttf in Resources */,
@@ -852,6 +869,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Starter/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = GymonodoTest;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -862,7 +880,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.micropolis.Starter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.basselshawi.gymondoTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -882,6 +900,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Starter/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = GymonodoTest;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -892,7 +911,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.micropolis.Starter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.basselshawi.gymondoTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1055,6 +1074,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8822ED892AC5CBA100A92925 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88B06C592AC582B90047E0AC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
 		88B06C5A2AC582B90047E0AC /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 88B06C592AC582B90047E0AC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;

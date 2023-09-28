@@ -7,15 +7,7 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 		<key>NSExceptionDomains</key>
-		<dict>
-			<key>https://media.havebreak.com.s3.eu-west-2.amazonaws.com</key>
-			<dict>
-				<key>NSIncludesSubdomains</key>
-				<true/>
-				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-			</dict>
-		</dict>
+		<dict/>
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
