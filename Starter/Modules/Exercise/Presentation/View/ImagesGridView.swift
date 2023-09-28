@@ -20,25 +20,10 @@ struct ImagesGridView : View {
         LazyVGrid(columns: columns, spacing: 16) {
             ForEach(images) { image in
                 if let imageUrl = image.image {
-                    FadeInNetworkImage(url:imageUrl, placeHolder:
-                                        
-                                        ZStack {
-                        Color.lightShadowColor
-                        
-                        LoadingView(size: CGSize(width: 40, height: 40))
-                        
-                    }
-                        .cornerRadius(10)
-                        .frame(width:120,height:120),
-                                       customizeNetworkImage: { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .cornerRadius(10)
-                            .frame(width:120,height:120)
-                    })
+                    FadeInNetworkImage(url: imageUrl, size: CGSize(width: 120, height: 120))
                 }
             }
         }
     }
+
 }

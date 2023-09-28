@@ -6,24 +6,45 @@
 //
 
 import SwiftUI
-import CachedAsyncImage
+import SDWebImageSwiftUI
 
 struct FadeInNetworkImage: View {
-        
+    
     let url:String
-    let placeHolder:any View
-    let customizeNetworkImage: ((Image)->(any View))?
+    let size:CGSize
     
     var body: some View {
         
-        CachedAsyncImage(url: URL(string: url)){
-            image in
-            customizeNetworkImage == nil ? image.customTransition().eraseType() : customizeNetworkImage!(image).customTransition().eraseType()
+        WebImage(url: URL(string: url))
+        
+            .onSuccess { image, data, cacheType in
+            }
+            .resizable()
+            .placeholder{
+                PlaceHolderView(size: size)
+            }
+            .indicator(.activity)
+            .transition(.fade(duration: 0.5))
+            .scaledToFit()
+            .frame(width: size.width,height:size.height)
+        
+    }
+    
+}
 
-        } placeholder: {
-            placeHolder
-                .customTransition()
-                .eraseType()
+struct PlaceHolderView : View {
+    
+    let size:CGSize
+    
+    var body : some View {
+        ZStack {
+            Color.lightGrayText.opacity(0.4)
+            Image(systemName: "lungs")
+                .foregroundColor(.blackColor)
+                .frame(width: size.width*0.8,height: size.height*0.8)
         }
+        .shadow(radius: 3)
+        .cornerRadius(10)
+        .frame(width: size.width,height:size.height)
     }
 }

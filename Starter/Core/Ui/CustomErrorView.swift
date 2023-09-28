@@ -24,7 +24,7 @@ struct CustomErrorView: View {
                    .style(fontWeight: .w600, fontSize: 18, textColor: .purpleColor)
                Spacer()
            }
-           .padding(.horizontal,20~w)
+           .padding(.horizontal,20)
        }
     }
 }

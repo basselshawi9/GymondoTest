@@ -30,13 +30,7 @@ class APIService : NSObject,URLSessionDelegate{
                 switch response.result{
                 case .failure(let Lerror):
                     
-                    if let errorCode = Lerror.asAFError?.responseCode,errorCode == 403 {
-                        if let restartNotifier : RestartAppNotifier = DependencyInjector.shared.getService() {
-                            restartNotifier.restartPublisher.send(true)
-                        }
-                    }
-                 
-                    else if let code = response.response?.statusCode, code == 200 {
+                    if let code = response.response?.statusCode, code == 200 {
                         if let emptyModel = EmptyModel() as? T {
                             promise(.success(emptyModel))
                         }
@@ -56,6 +50,6 @@ class APIService : NSObject,URLSessionDelegate{
             }
         }
     }
-
+    
 }
 

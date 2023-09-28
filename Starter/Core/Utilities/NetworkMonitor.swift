@@ -2,41 +2,34 @@
 //  NetworkMonitor.swift
 //  Starter
 //
-//  Created by iMac on 9/27/23.
+//  Created by iMac on 9/28/23.
 //
 
 import Foundation
 import Network
-import Combine
 
-class NetworkMonitor {
+final class NetworkMonitor: ObservableObject {
+
     static let shared = NetworkMonitor()
-
+    let queue = DispatchQueue(label: "NetworkMonitor")
     let monitor = NWPathMonitor()
-    private var status: NWPath.Status = .requiresConnection
-    @Published var isReachable: Bool = true
-    var isReachableOnCellular: Bool = true
+    @Published public private(set) var isConnected: Bool = false
+    private var hasStatus: Bool = false
     
-    var cancelables = Set<AnyCancellable>()
-    
-
-    func startMonitoring() {
-        monitor.pathUpdateHandler = { [weak self] path in
-            self?.status = path.status
-            self?.isReachableOnCellular = path.isExpensive
-
-            if path.status == .satisfied {
-                self?.isReachable = true
-            } else {
-                self?.isReachable = false
-            }
+    init() {
+        monitor.pathUpdateHandler = { path in
+            #if targetEnvironment(simulator)
+                if (!self.hasStatus) {
+                    self.isConnected = path.status == .satisfied
+                    self.hasStatus = true
+                } else {
+                    self.isConnected = !self.isConnected
+                }
+            #else
+                self.isConnected = path.status == .satisfied
+            #endif
         }
-
-        let queue = DispatchQueue(label: "NetworkMonitor")
         monitor.start(queue: queue)
     }
 
-    func stopMonitoring() {
-        monitor.cancel()
-    }
 }

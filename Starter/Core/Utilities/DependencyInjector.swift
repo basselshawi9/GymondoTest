@@ -19,9 +19,6 @@ class DependencyInjector {
         addService(service: ExerciseViewModel())
         addService(service: NetworkMonitor())
         
-        // Notifiers
-        addService(service: RestartAppNotifier())
-        
     }
     
 
@@ -40,6 +37,31 @@ class DependencyInjector {
     func getService<T>() -> T? {
         let key = "\(T.self)"
         return reg[key] as? T
+    }
+    
+}
+
+extension DependencyInjector {
+    
+    // inject exercise datasource based on network availability
+    static func injectExerciseDataSource()-> ExerciseDataSrouce? {
+        
+        guard let networkMonitor : NetworkMonitor = DependencyInjector.shared.getService() else {
+            return nil
+        }
+        
+        if networkMonitor.isConnected {
+            guard let remote : ExerciseRemoteDataSrouce = DependencyInjector.shared.getService() else {
+                return nil
+            }
+            return remote
+        }
+        else {
+            guard let local : ExerciseLocalDataSrouce = DependencyInjector.shared.getService() else{
+                return nil
+            }
+            return local
+        }
     }
     
 }

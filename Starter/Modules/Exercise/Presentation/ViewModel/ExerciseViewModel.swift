@@ -28,7 +28,7 @@ class ExerciseViewModel : BaseViewModel {
     private func mapGetExercisesEvent(event:GetExercisesEvent) {
         exercisesState.send(ExerciseWaitingState())
         
-        if let _exerciseDataSource = injectDataSource() {
+        if let _exerciseDataSource = DependencyInjector.injectExerciseDataSource() {
             
             let repository = ExerciseRespository(datasrouce: _exerciseDataSource)
             repository.getExercises().receive(on: DispatchQueue.main).sink { completion in
@@ -58,7 +58,7 @@ class ExerciseViewModel : BaseViewModel {
     private func mapGetExerciseByIdEvent(event:GetExerciseByIdEvent) {
         exerciseByIdState.send(ExerciseWaitingState())
         
-        if let _exerciseDataSource = injectDataSource() {
+        if let _exerciseDataSource = DependencyInjector.injectExerciseDataSource() {
             
             let repository = ExerciseRespository(datasrouce: _exerciseDataSource)
             repository.getExerciseById(param: event.param).receive(on: DispatchQueue.main).sink { completion in
@@ -84,25 +84,5 @@ class ExerciseViewModel : BaseViewModel {
             }.store(in: &cancelables)
         }
     }
-    
-    private func injectDataSource()-> ExerciseDataSrouce? {
         
-        guard let networkMonitor : NetworkMonitor = DependencyInjector.shared.getService() else {
-            return nil
-        }
-        
-        if networkMonitor.isReachable {
-            guard let remote : ExerciseRemoteDataSrouce = DependencyInjector.shared.getService() else {
-                return nil
-            }
-            return remote
-        }
-        else {
-            guard let local : ExerciseLocalDataSrouce = DependencyInjector.shared.getService() else{
-                return nil
-            }
-            return local
-        }
-    }
-    
 }

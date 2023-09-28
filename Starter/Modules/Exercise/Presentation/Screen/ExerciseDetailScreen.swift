@@ -45,7 +45,7 @@ struct ExerciseDetailScreen : View {
             Text("Variations")
                 .style(fontWeight: .w700, fontSize: 20, textColor: .blackColor)
             ForEach(variations.filter({visitedExercies.contains($0) == false }),id:\.self) { id in
-                ExerciseListItemIdLoaderSwiftUI(exerciseId: id) { model in
+                ExerciseListItemIdLoaderSwiftUIWrapper(exerciseId: id) { model in
                     selectedExercise = model
                     showExerciseVariantDetailScreen = true
                 }

@@ -22,10 +22,11 @@ struct ExercisesScreen : View {
     @StateObject private var exercisesState = ViewModelState()
     @State private var showExerciseDetailScreen = false
     @State private var selectedExercise : ExerciseModel?
-    
+   
     var body: some View {
         
-        ZStack {
+        
+        return ZStack {
             NavigationLink("", isActive:$showExerciseDetailScreen) {
                 if let _selectedExercise = selectedExercise {
                     ExerciseDetailScreen(model: _selectedExercise, visitedExercies: [_selectedExercise.id ?? 0], showExerciseDetailScreen: $showExerciseDetailScreen)
@@ -47,7 +48,7 @@ struct ExercisesScreen : View {
         }
         .navigationTitle("Exercises")
         .onViewDidLoad{
-
+            
             viewModel.addEvent(event: GetExercisesEvent())
             bindViewModelToState()
         }

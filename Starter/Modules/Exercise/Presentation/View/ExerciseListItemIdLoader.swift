@@ -18,13 +18,23 @@ class ExerciseListItemIdLoader : UIView {
     let viewModel = ExerciseViewModel()
     
     lazy var loadingView : UIView = {
-        UIHostingController(rootView: LoadingView(size: CGSize(width: 40, height: 40))).view
+        let indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        indicator.startAnimating()
+        indicator.color = UIColor.systemBlue
+        return indicator
     }()
     
-    lazy var errorView : UIView = {
-        UIHostingController(rootView: CustomErrorView(text: "Error Getting this variant", callBackPressed: {
-            self.viewModel.addEvent(event: GetExerciseByIdEvent(param: GetExerciseByIdParam(id: self.exerciseId)))
-        })).view
+    lazy var errorView : UILabel = {
+        
+        let errorLabel = UILabel()
+        errorLabel.text = "Error Getting this variant, Retry?"
+        errorLabel.textColor = UIColor.systemBlue
+        errorLabel.font = UIFont(name: "Glory-Regular", size: 18)
+        errorLabel.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self , action: #selector(ExerciseListItemIdLoader.handleErrorLabelTapped))
+        errorLabel.addGestureRecognizer(tapGesture)
+        return errorLabel
+        
     }()
     
     init(exerciseId:Int,itemPressed: @escaping (ExerciseModel)->()) {
@@ -78,13 +88,15 @@ class ExerciseListItemIdLoader : UIView {
                 
                 self.loadingView.isHidden = true
                 self.errorView.isHidden = true
+                self.viewWithTag(2)?.removeFromSuperview()
                 
                 let exerciseItemView = ExerciseListItemView(model: successState.model) {
                     self.itemPressed(successState.model)
                 }
-                if let exerciseItemViewWrapper = UIHostingController(rootView: exerciseItemView).view {
-                    self.addSubview(exerciseItemViewWrapper)
-                    exerciseItemViewWrapper.snp.makeConstraints { make in
+                if let exerciseItemViewUIKitWrapper = UIHostingController(rootView: exerciseItemView).view {
+                    exerciseItemViewUIKitWrapper.tag = 2
+                    self.addSubview(exerciseItemViewUIKitWrapper)
+                    exerciseItemViewUIKitWrapper.snp.makeConstraints { make in
                         make.top.equalToSuperview()
                         make.left.equalToSuperview()
                         make.right.equalToSuperview()
@@ -96,9 +108,13 @@ class ExerciseListItemIdLoader : UIView {
             
         }.store(in: &viewModel.cancelables)
     }
+    
+    @objc func handleErrorLabelTapped() {
+        self.viewModel.addEvent(event: GetExerciseByIdEvent(param: GetExerciseByIdParam(id: self.exerciseId)))
+    }
 }
 
-struct ExerciseListItemIdLoaderSwiftUI: UIViewRepresentable {
+struct ExerciseListItemIdLoaderSwiftUIWrapper: UIViewRepresentable {
     
     let exerciseId : Int
     let itemPressed:(ExerciseModel)->()
