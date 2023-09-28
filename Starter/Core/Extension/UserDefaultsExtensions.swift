@@ -9,11 +9,6 @@ import Foundation
 
 extension UserDefaults {
     
-    @UserDefault(key: "user_name",defaultValue: "")
-    static var name: String
-   
-    @UserDefault(key: "appleLastName")
-    static var appleLastName: String?
-
-    
+    @UserDefault(key: "cachedExercises")
+    static var cachedExercises: String?    
 }

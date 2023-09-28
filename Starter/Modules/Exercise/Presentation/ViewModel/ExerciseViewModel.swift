@@ -28,9 +28,9 @@ class ExerciseViewModel : BaseViewModel {
     private func mapGetExercisesEvent(event:GetExercisesEvent) {
         exercisesState.send(ExerciseWaitingState())
         
-        if let remoteDataSource : ExerciseRemoteDataSrouce = DependencyInjector.shared.getService() {
+        if let _exerciseDataSource = injectDataSource() {
             
-            let repository = ExerciseRespository(datasrouce: remoteDataSource)
+            let repository = ExerciseRespository(datasrouce: _exerciseDataSource)
             repository.getExercises().receive(on: DispatchQueue.main).sink { completion in
                 switch completion {
                 case .failure(let err):
@@ -45,6 +45,12 @@ class ExerciseViewModel : BaseViewModel {
             } receiveValue: { model in
                 self.exercisesState.send(GetExerciseSuccessState(model: model))
                 
+                if _exerciseDataSource is ExerciseRemoteDataSrouce {
+                    if let local : ExerciseLocalDataSrouce = DependencyInjector.shared.getService(), let exercies = model.results {
+                        let _ = local.save(exercies: exercies)
+                    }
+                }
+                
             }.store(in: &cancelables)
         }
     }
@@ -52,9 +58,9 @@ class ExerciseViewModel : BaseViewModel {
     private func mapGetExerciseByIdEvent(event:GetExerciseByIdEvent) {
         exerciseByIdState.send(ExerciseWaitingState())
         
-        if let remoteDataSource : ExerciseRemoteDataSrouce = DependencyInjector.shared.getService() {
+        if let _exerciseDataSource = injectDataSource() {
             
-            let repository = ExerciseRespository(datasrouce: remoteDataSource)
+            let repository = ExerciseRespository(datasrouce: _exerciseDataSource)
             repository.getExerciseById(param: event.param).receive(on: DispatchQueue.main).sink { completion in
                 switch completion {
                 case .failure(let err):
@@ -69,8 +75,33 @@ class ExerciseViewModel : BaseViewModel {
             } receiveValue: { model in
                 
                 self.exerciseByIdState.send(GetExerciseByIdSuccessState(model: model))
+                if _exerciseDataSource is ExerciseRemoteDataSrouce {
+                    if let local : ExerciseLocalDataSrouce = DependencyInjector.shared.getService() {
+                        let _ = local.save(exercies: [model])
+                    }
+                }
                 
             }.store(in: &cancelables)
+        }
+    }
+    
+    private func injectDataSource()-> ExerciseDataSrouce? {
+        
+        guard let networkMonitor : NetworkMonitor = DependencyInjector.shared.getService() else {
+            return nil
+        }
+        
+        if networkMonitor.isReachable {
+            guard let remote : ExerciseRemoteDataSrouce = DependencyInjector.shared.getService() else {
+                return nil
+            }
+            return remote
+        }
+        else {
+            guard let local : ExerciseLocalDataSrouce = DependencyInjector.shared.getService() else{
+                return nil
+            }
+            return local
         }
     }
     

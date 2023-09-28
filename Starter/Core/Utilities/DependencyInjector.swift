@@ -15,7 +15,9 @@ class DependencyInjector {
     private init(){
         
         addService(service: ExerciseRemoteDataSrouce())
+        addService(service: ExerciseLocalDataSrouce())
         addService(service: ExerciseViewModel())
+        addService(service: NetworkMonitor())
         
         // Notifiers
         addService(service: RestartAppNotifier())

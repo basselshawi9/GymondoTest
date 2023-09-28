@@ -47,7 +47,7 @@ struct ExercisesScreen : View {
         }
         .navigationTitle("Exercises")
         .onViewDidLoad{
-            
+
             viewModel.addEvent(event: GetExercisesEvent())
             bindViewModelToState()
         }

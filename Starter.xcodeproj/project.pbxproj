@@ -23,6 +23,8 @@
 		88BB73BA2AC46A8C00B9983C /* ExerciseListItemIdLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BB73B92AC46A8C00B9983C /* ExerciseListItemIdLoader.swift */; };
 		88BB73BC2AC4711400B9983C /* GetExerciseByIdParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BB73BB2AC4711400B9983C /* GetExerciseByIdParam.swift */; };
 		88BB73BE2AC496ED00B9983C /* ImagesGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BB73BD2AC496ED00B9983C /* ImagesGridView.swift */; };
+		88BB73C02AC49AFC00B9983C /* ExerciseLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BB73BF2AC49AFC00B9983C /* ExerciseLocalDataSource.swift */; };
+		88BB73C22AC4A20400B9983C /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BB73C12AC4A20400B9983C /* NetworkMonitor.swift */; };
 		88E978CA2ABDD10B00547761 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88E978C92ABDD10B00547761 /* Assets.xcassets */; };
 		88E978CD2ABDD10B00547761 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88E978CC2ABDD10B00547761 /* Preview Assets.xcassets */; };
 		88E978D72ABDD10B00547761 /* StarterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E978D62ABDD10B00547761 /* StarterTests.swift */; };
@@ -130,6 +132,8 @@
 		88BB73B92AC46A8C00B9983C /* ExerciseListItemIdLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListItemIdLoader.swift; sourceTree = "<group>"; };
 		88BB73BB2AC4711400B9983C /* GetExerciseByIdParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetExerciseByIdParam.swift; sourceTree = "<group>"; };
 		88BB73BD2AC496ED00B9983C /* ImagesGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesGridView.swift; sourceTree = "<group>"; };
+		88BB73BF2AC49AFC00B9983C /* ExerciseLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseLocalDataSource.swift; sourceTree = "<group>"; };
+		88BB73C12AC4A20400B9983C /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		88E978C22ABDD10800547761 /* Starter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Starter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88E978C92ABDD10B00547761 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		88E978CC2ABDD10B00547761 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -259,6 +263,7 @@
 			children = (
 				88703F9D2AC340CA00271658 /* ExcerciseDataSrouce.swift */,
 				88703FA12AC341A300271658 /* ExerciseRemoteDataSource.swift */,
+				88BB73BF2AC49AFC00B9983C /* ExerciseLocalDataSource.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -496,6 +501,7 @@
 				88E9793E2ABDD2F900547761 /* DependencyInjector.swift */,
 				88E9793F2ABDD2F900547761 /* KeyboardAdaptive.swift */,
 				88E979402ABDD2F900547761 /* ScreenUtil.swift */,
+				88BB73C12AC4A20400B9983C /* NetworkMonitor.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -736,6 +742,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88E9796A2ABDD2F900547761 /* CustomTextField.swift in Sources */,
+				88BB73C22AC4A20400B9983C /* NetworkMonitor.swift in Sources */,
 				88703FB42AC34D9400271658 /* ExerciseImagesModel.swift in Sources */,
 				88E979902ABDD2F900547761 /* APIService.swift in Sources */,
 				88E9799C2ABDD2F900547761 /* FilesConstants.swift in Sources */,
@@ -770,6 +777,7 @@
 				88703FA22AC341A300271658 /* ExerciseRemoteDataSource.swift in Sources */,
 				88E9798C2ABDD2F900547761 /* RestartAppNotifier.swift in Sources */,
 				88703FB92AC3514D00271658 /* ExerciseListItemView.swift in Sources */,
+				88BB73C02AC49AFC00B9983C /* ExerciseLocalDataSource.swift in Sources */,
 				88703FAB2AC3431300271658 /* ExerciseEvent.swift in Sources */,
 				88E979862ABDD2F900547761 /* ExpandableTextExtension.swift in Sources */,
 				88E9797D2ABDD2F900547761 /* KeyboardExtension.swift in Sources */,
