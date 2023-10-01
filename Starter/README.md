@@ -13,7 +13,7 @@ The Architecture that I used in the project is inspired by TDD Clean Architectur
 it's divided into 2 main parts 
 
 1. Core which holds various utilities, API helpers, Reusable UI, extensions, modifiers, DependencyInjector, and other helper classes 
-2. Modules: any application can be divided into several modules, for example: User Management, Exercise, Subscription, etc...
+2. Modules: any application can be divided into several modules, for example: User Management, Exercises, Subscription, etc...
 In our case, we have only 1 module, Exercises.
 
 Each Module is divided into 2 main parts:
