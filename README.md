@@ -20,9 +20,7 @@ Each Module is divided into 2 main parts:
 
 1. Data: in that section, we have our models, parameters, data sources, and repositories
 2. Presentation is divided into the ViewModel Section which holds Events, States, and the actual ViewModel. Views Section, and the Screens Section.
-    
-    ViewModel accepts events from views and screens and produces states to be consumed 
-    by the UI
+ViewModel accepts events from views and screens and produces states to be consumed by the UI
 
 TDD Architecture usually has 3 layers: Data, Domain, and Presentation, for simplicity I eliminated the Domain Layer, because it's more suitable for small projects and tests, but I use the full architecture when working with a team, or working on middle to big projects. The Domain Layer gives a better encapsulation between presentation and data layers.
 
